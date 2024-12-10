@@ -59,7 +59,7 @@ class Matrix:
         return result
 
     def __truediv__(self, scalar: int | float | complex) -> "Matrix":
-        if not isinstance(scalar, Matrix):
+        if not isinstance(scalar, int | float | complex):
             raise TypeError("Invalid type for matrix-scalar division.")
 
         result = fill_matrix(self.rows, self.cols)
@@ -218,7 +218,7 @@ def embed(small_matrix: Matrix | int | float | complex, large_matrix: Matrix | i
     if isinstance(large_matrix, int):
         large_matrix = identity_matrix(large_matrix)
     if isinstance(small_matrix, int | float | complex):
-        small_matrix = Matrix([small_matrix])
+        small_matrix = Matrix([[small_matrix]])
 
     embedded_matrix = Matrix([row[:] for row in large_matrix.data])  # Copy to avoid changing the original.
 
