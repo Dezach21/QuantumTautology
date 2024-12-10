@@ -26,7 +26,6 @@ class Matrix:
     def __eq__(self, other: "Matrix") -> bool:
         if not isinstance(other, Matrix):
             return False
-
         return self.data == other.data
 
     def __mul__(self, scalar: int | float | complex) -> "Matrix":
@@ -34,6 +33,7 @@ class Matrix:
             raise TypeError("Invalid type for scalar-matrix multiplication")
 
         result = fill_matrix(self.rows, self.cols)
+
         for i in range(self.rows):
             for j in range(self.cols):
                 result[i][j] = self.data[i][j] * scalar
@@ -50,6 +50,7 @@ class Matrix:
             raise TypeError("Invalid type for matrix-matrix multiplication.")
 
         result = fill_matrix(self.rows, second_matrix.cols)
+
         for i in range(self.rows):
             for j in range(second_matrix.cols):
                 for k in range(self.cols):
@@ -62,6 +63,7 @@ class Matrix:
             raise TypeError("Invalid type for matrix-scalar division.")
 
         result = fill_matrix(self.rows, self.cols)
+
         for i in range(self.rows):
             for j in range(self.cols):
                 result[i][j] = self.data[i][j] / scalar
@@ -75,6 +77,7 @@ class Matrix:
             raise ValueError("Incompatible dimensions for matrix addition.")
 
         result = fill_matrix(self.rows, self.cols)
+
         for i in range(self.rows):
             for j in range(self.cols):
                 result[i][j] = self.data[i][j] + second_matrix.data[i][j]
@@ -88,6 +91,7 @@ class Matrix:
             raise ValueError("Incompatible dimensions for matrix subtraction.")
 
         result = fill_matrix(self.rows, self.cols)
+
         for i in range(self.rows):
             for j in range(self.cols):
                 result[i][j] = self.data[i][j] - second_matrix.data[i][j]
@@ -103,7 +107,7 @@ class Matrix:
         identity, inverse = identity_matrix(self.rows), list()
 
         for i in range(self.rows):
-            # Solves for each column of the identity matrix.
+            # Solve for each column of the identity matrix.
             column = zip_lists_to_matrix([row[i] for row in identity])
             inverse_column = gepp(self.data, column).transpose()[0]
             inverse.append(inverse_column)
@@ -144,9 +148,11 @@ def identity_matrix(size: int) -> Matrix:
     :return: A square matrix with a diagonal filled with ones.
     """
     identity = fill_matrix(size, size)
+
     for i in range(size):
         for j in range(size):
             identity[i][j] += 1 * (i == j)
+
     return identity
 
 
@@ -177,6 +183,7 @@ def gepp(a: Matrix, b: Matrix) -> Matrix:
     """
     n = b.rows
     solution = fill_matrix(n, 1)
+
     for k in range(n):
         sub_column = [abs(a[r][k]) for r in range(k, n)]
         max_val = max(sub_column)
