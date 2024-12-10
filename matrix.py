@@ -199,17 +199,19 @@ def gepp(a: Matrix, b: Matrix) -> Matrix:
     return solution
 
 
-def embed(small_matrix: Matrix, large_matrix: Matrix | int) -> Matrix:
+def embed(small_matrix: Matrix | int | float | complex, large_matrix: Matrix | int) -> Matrix:
     """
     Embed ``small_matrix`` into the lower right corner of ``large_matrix``. If no ``large_matrix`` is given, but instead
     an integer, an identity matrix is used as ``large_matrix``.
 
-    :param small_matrix: A smaller matrix to embed.
-    :param large_matrix: A larger matrix to receive the embedding.
+    :param small_matrix: A smaller matrix to embed, or a scalar to specify a `1`-by-`1` matrix.
+    :param large_matrix: A larger matrix to receive the embedding, or an integer to specify an identity matrix.
     :return: A new matrix with the embedded smaller matrix in the lower right corner.
     """
     if isinstance(large_matrix, int):
         large_matrix = identity_matrix(large_matrix)
+    if isinstance(small_matrix, int | float | complex):
+        small_matrix = Matrix([small_matrix])
 
     embedded_matrix = Matrix([row[:] for row in large_matrix.data])  # Copy to avoid changing the original.
 
