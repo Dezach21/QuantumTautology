@@ -66,6 +66,28 @@ def factorial(x: int) -> int:
         return x * factorial(x - 1)
 
 
+# --- Trigonometric functions --- #
+
+def sin(x: int | float | complex) -> complex:
+    """
+    Sine.
+
+    :param x: Value.
+    :return: `sin(x)`.
+    """
+    return (exp(1j * x) - exp(-1j * x)) / 2j
+
+
+def cos(x: int | float | complex) -> complex:
+    """
+    Cosine.
+
+    :param x: Value.
+    :return: `cos(x)`.
+    """
+    return (exp(1j * x) + exp(-1j * x)) / 2
+
+
 # --- Distributions --- #
 
 def gaussian(x: int | float, mu: int | float, sigma: int | float) -> float:
