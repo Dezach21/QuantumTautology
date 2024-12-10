@@ -1,4 +1,4 @@
-from math import *
+from QuantumTautology.math import sqrt, gaussian
 
 
 class QuantumState:

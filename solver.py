@@ -1,5 +1,5 @@
-from matrix import *
-from state import *
+from QuantumTautology.matrix import Matrix, identity_matrix, zip_lists_to_matrix
+from QuantumTautology.state import QuantumState
 
 
 class QuantumSolver:
