@@ -17,7 +17,7 @@ ___
   * Verify that a particle in a stationary state remains constant over time.
 
 ### Part II: Quantum Gates and Algorithms
-* [ ] **Matrix Class for Quantum Gates**
+* [x] **Matrix Class for Quantum Gates**
   * Implement matrix representations for basic quantum logic gates (e.g., Hadamard, Pauli-X, Pauli-Y, Pauli-Z, CNOT).
 
 * [ ] **Apply Quantum Gates**
@@ -41,18 +41,9 @@ ___
   * Create visual representations of quantum circuits.
   * Illustrate the process of quantum algorithms through step-by-step visualizations.
 
-### Part IV: Documentation and Testing
-* [ ] **Comprehensive Documentation**
-  * Write detailed docstrings for classes and methods.
-  * Create usage examples and tutorials.
-
-* [ ] **Unit Testing**
-  * Develop unit tests for all components of the project.
-  * Ensure the codebase maintains high coverage and reliability.
-
 ### Additional Features (Optional)
-* [ ] **Advanced Quantum Gates**
-  * Implement additional quantum gates (e.g., Toffoli gate, Fredkin gate).
+* [x] **Advanced Quantum Gates**
+  * Implement additional quantum gates.
 
 * [ ] **User Interface**
   * Develop a simple GUI to interact with the quantum simulator.
@@ -76,4 +67,5 @@ If time permits, the implementation of some visualization of the wave function o
 
 ## Links
 * [Quantum logic gates](https://en.wikipedia.org/wiki/Quantum_logic_gate)
+* [List of quantum logic gates](https://en.wikipedia.org/wiki/List_of_quantum_logic_gates)
 * [Quantum algorithms](https://en.wikipedia.org/wiki/Quantum_algorithm)
