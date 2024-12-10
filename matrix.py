@@ -57,6 +57,17 @@ class Matrix:
 
         return result
 
+    def __truediv__(self, scalar: int | float | complex) -> "Matrix":
+        if not isinstance(scalar, Matrix):
+            raise TypeError("Invalid type for matrix-scalar division.")
+
+        result = fill_matrix(self.rows, self.cols)
+        for i in range(self.rows):
+            for j in range(self.cols):
+                result[i][j] = self.data[i][j] / scalar
+
+        return result
+
     def __add__(self, second_matrix: "Matrix") -> "Matrix":
         if not isinstance(second_matrix, Matrix):
             raise TypeError("Invalid type for matrix-matrix addition.")
@@ -186,3 +197,28 @@ def gepp(a: Matrix, b: Matrix) -> Matrix:
             solution[j][0] = (b[j][0] - sum(a[j][c] * solution[c][0] for c in range(j + 1, n))) / a[j][j]
 
     return solution
+
+
+def embed(small_matrix: Matrix, large_matrix: Matrix | int) -> Matrix:
+    """
+    Embed ``small_matrix`` into the lower right corner of ``large_matrix``. If no ``large_matrix`` is given, but instead
+    an integer, an identity matrix is used as ``large_matrix``.
+
+    :param small_matrix: A smaller matrix to embed.
+    :param large_matrix: A larger matrix to receive the embedding.
+    :return: A new matrix with the embedded smaller matrix in the lower right corner.
+    """
+    if isinstance(large_matrix, int):
+        large_matrix = identity_matrix(large_matrix)
+
+    embedded_matrix = Matrix([row[:] for row in large_matrix.data])  # Copy to avoid changing the original.
+
+    if small_matrix.rows > large_matrix.rows or small_matrix.cols > large_matrix.cols:
+        raise ValueError("The dimensions of the small matrix must fit within the large matrix.")
+
+    for i in range(small_matrix.rows):
+        for j in range(small_matrix.cols):
+            embedded_matrix[large_matrix.rows - small_matrix.rows + i][
+                large_matrix.cols - small_matrix.cols + j] = small_matrix[i][j]
+
+    return embedded_matrix
